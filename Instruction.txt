@@ -1,0 +1,33 @@
+Detailed implementation and how to run with terminal can be found on this link :
+
+https://github.com/odegeasslbc/FastGAN-pytorch
+
+In addition to that if you want to run in jupyter add this three files in cloned repository:
+MY_train.ipynb, My_eval.ipynb, helper_function.py
+
+
+MY_train.ipynb: This file helps to train the model
+For training the model first we need to call the argument class which will be initialised with default parameter:
+step1: arg.name = "test1" it will create test1 folder that will save all the weights of model
+step2: arg.name = "path to your image folder" This is the path of the located image folder which you want to train
+step3: arg.ckpt = "path to your save model weight" if you want to start the model from some loaded weight
+step4: arg.iteration = 50000 Number of iteration required for training
+step5: train(arg) it will start training and progress can be seen in arg.name folder
+
+other parameter is self understandable
+
+
+for calculation of FID score :
+change this list according to how the epoch should be read epochs = [i for i in range(77500,100001,500)] 
+and FID(arg) will return FID score, epoch
+
+MY_eval.ipynb: This file helps to generate the image from the saved weight
+
+read these three lines to understand how the path of weight should be loader in order to generate the image and where the image is stored which can be found in for generating image section.
+epoch = 60000
+ckpt = f"{args.artifacts}/models/{epoch}.pth"
+dest = 'eval_%d'%(epoch)
+args.n_sample = 100 # no of samples you need tot generate the image 
+helper_function: include some function that helps the above process like calculation of FID score
+
+
